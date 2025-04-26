@@ -1,18 +1,18 @@
-package aplication;
+package app;
 
 import javax.swing.*;
 
-public class GUI extends JFrame {
+public class GUI {
     private JTextField campoNome;
     private JTextField campoVida;
     private JButton botaoCriar;
     private JButton aplicarDano;
     private JTextField campoDano;
     // private JLabel labelStatus;
-    private DefaultListModel<Monstro> listaMonstros;
-    private JList<Monstro> visualListaMonstros;
+    private DefaultListModel<Monster> listaMonstros;
+    private JList<Monster> visualListaMonstros;
 
-    public GUI(){
+    public GUI() {
         // configurarJanela();         // Define tamanho, título, fechar ao sair, etc
         // inicializarComponentes();   // Cria e configura todos os botões, campos etc.
         // montarLayout();             // Define a disposição dos elementos
@@ -20,19 +20,19 @@ public class GUI extends JFrame {
         // this.setVisible(true);      // Exibe a janela
     }
 
-    private void configurarJanela(){
+    private void configurarJanela() {
         // setTitle, setSize, setDefaultCloseOperation, etc
     }
 
-    private void inicializarComponentes(){
+    private void inicializarComponentes() {
         // instancia JTextFields, JButtons, JLabel, JList, etc.
     }
 
-    private void montarLayout(){
+    private void montarLayout() {
         // adiciona os componentes no painel e posiciona com LayoutManager
     }
 
-    private void adicionarListeners(){
+    private void adicionarListeners() {
         // define o que acontece ao clicar em criar monstro, aplicar dano, etc
     }
 

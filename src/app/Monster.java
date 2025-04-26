@@ -1,11 +1,10 @@
-package aplication;
+package app;
 
-public class Monstro {
-
+public class Monster {
     private String nome;
     private int vida;
 
-    public Monstro(String nome, int vida){
+    public Monster(String nome, int vida){
         this.vida = vida;
         this.nome = nome;
     }
