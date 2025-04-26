@@ -1,29 +1,29 @@
 package app;
 
 public class Monster {
-    private String nome;
-    private int vida;
+    private String name;
+    private int life;
 
-    public Monster(String nome, int vida){
-        this.vida = vida;
-        this.nome = nome;
+    public Monster(String name, int life){
+        this.life = life;
+        this.name = name;
     }
 
-    public void aumentarVida(int num){
-        this.vida += num;
+    public void increaseLife(int num){
+        this.life += num;
     }
 
-    public void diminuirVida(int num){
-        this.vida -= num;
-        if (vida < 0)
-            vida = 0;
+    public void decreaselife(int num){
+        this.life -= num;
+        if (life < 0)
+            life = 0;
     }
 
-    public int getVida(){
-        return vida;
+    public int getlife(){
+        return life;
     }
 
-    public String getNome(){
-        return nome;
+    public String getname(){
+        return name;
     }
 }
