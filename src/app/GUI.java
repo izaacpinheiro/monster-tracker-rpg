@@ -9,7 +9,8 @@ public class GUI {
     private JTextField lifeField;
     private JButton createButton;
     private JButton applyDamageButton;
-    private JTextField damageField;
+    private JButton healButton;
+    private JTextField amountField;
     // private JLabel statusLabel;
     private DefaultListModel<Monster> monsterListModel;
     private JList<Monster> monsterListView;
@@ -35,10 +36,15 @@ public class GUI {
         // Instantiate JTextFields, JButtons, JLabel, JList, etc.
         nameField = new JTextField(10);
         lifeField = new JTextField(5);
-        damageField = new JTextField(5);
+        amountField = new JTextField(3);
 
         createButton = new JButton("Create monster");
-        applyDamageButton = new JButton("Apply damage");
+        applyDamageButton = new JButton("+");
+        healButton = new JButton("-");
+
+        healButton.setEnabled(false);
+        applyDamageButton.setEnabled(false);
+        amountField.setEnabled(false);
 
         monsterListModel = new DefaultListModel<>();
         monsterListView = new JList<>(monsterListModel);
@@ -59,22 +65,28 @@ public class GUI {
         createPanel.add(lifeField);
         createPanel.add(createButton);
 
-        // row apply damage
+        // row apply damage (provavelmente não vou usar mas vou deixar aqui por enquanto)
         //JPanel damagePanel = new JPanel();
         //damagePanel.add(new JLabel("Damage/Heal:"));
         //damagePanel.add(damageField);
         //damagePanel.add(applyDamageButton);
+
+        // control panel -> to apply damage and heal
+        JPanel controlPanel = new JPanel();
+        controlPanel.add(new JLabel("Valor:"));
+        controlPanel.add(amountField);
+        controlPanel.add(applyDamageButton);
+        controlPanel.add(healButton);
 
         // monster list
         JScrollPane listScrollPane = new JScrollPane(monsterListView);
 
         // add everything to the main panel
         mainPanel.add(createPanel);
-        mainPanel.add(Box.createVerticalStrut(2)); // space
-        //mainPanel.add(damagePanel);
-        //mainPanel.add(Box.createVerticalStrut(2)); // space
+        mainPanel.add(Box.createVerticalStrut(10)); // space
         mainPanel.add(new JLabel("Monsters:"));
         mainPanel.add(listScrollPane);
+        mainPanel.add(controlPanel);
 
         // add main panel to window
         window.add(mainPanel);
