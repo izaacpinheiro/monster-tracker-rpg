@@ -1,10 +1,11 @@
 package app;
 
 import javax.swing.*;
+import java.util.jar.JarEntry;
 
 public class GUI {
     private JFrame window;
-    private JTextField nameField;
+    private JTextField nameField; // field é o campo onde vai ser digitado
     private JTextField lifeField;
     private JButton createButton;
     private JButton applyDamageButton;
@@ -15,8 +16,8 @@ public class GUI {
 
     public GUI() {
         configWindow();             // Define window size, title, close operation, etc
-        // initComponents();           // Create and configure all buttons, fields, etc.
-        // setupLayout();              // Define the layout of components
+        initComponents();           // Create and configure all buttons, fields, etc.
+        setupLayout();              // Define the layout of components
         // addListeners();             // Add action to the buttons
         window.setVisible(true);      // Show the window
     }
@@ -46,6 +47,37 @@ public class GUI {
 
     private void setupLayout() {
         // Add components to the panel and position them with LayoutManager
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // row create monster
+        JPanel createPanel = new JPanel();
+        createPanel.add(new JLabel("Name:"));
+        createPanel.add(nameField);
+        createPanel.add(new JLabel("Life:"));
+        createPanel.add(lifeField);
+        createPanel.add(createButton);
+
+        // row apply damage
+        //JPanel damagePanel = new JPanel();
+        //damagePanel.add(new JLabel("Damage/Heal:"));
+        //damagePanel.add(damageField);
+        //damagePanel.add(applyDamageButton);
+
+        // monster list
+        JScrollPane listScrollPane = new JScrollPane(monsterListView);
+
+        // add everything to the main panel
+        mainPanel.add(createPanel);
+        mainPanel.add(Box.createVerticalStrut(2)); // space
+        //mainPanel.add(damagePanel);
+        //mainPanel.add(Box.createVerticalStrut(2)); // space
+        mainPanel.add(new JLabel("Monsters:"));
+        mainPanel.add(listScrollPane);
+
+        // add main panel to window
+        window.add(mainPanel);
     }
 
     private void addListeners() {
