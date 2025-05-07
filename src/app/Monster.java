@@ -9,21 +9,17 @@ public class Monster {
         this.name = name;
     }
 
-    public void increaseLife(int num){
-        this.life += num;
+    // a single method for applying damage and healing
+    public void changeLife(int amount){
+        life += amount;
+        if (life < 0) life = 0;
     }
 
-    public void decreaselife(int num){
-        this.life -= num;
-        if (life < 0)
-            life = 0;
-    }
-
-    public int getlife(){
+    public int getLife(){
         return life;
     }
 
-    public String getname(){
+    public String getName(){
         return name;
     }
 }
