@@ -1,9 +1,7 @@
 package app;
 
-import javax.management.monitor.MonitorSettingException;
 import javax.swing.*;
 import java.awt.*;
-import java.util.jar.JarEntry;
 
 public class GUI {
     private JFrame window;
@@ -44,7 +42,6 @@ public class GUI {
 
         applyButton.setEnabled(false);
         removeButton.setEnabled(false);
-        //amountField.setEnabled(false);
 
         monsterListModel = new DefaultListModel<>();
         monsterListView = new JList<>(monsterListModel);
@@ -112,7 +109,7 @@ public class GUI {
             String lifeText = lifeField.getText().trim();
 
             if (nameText.isEmpty() || lifeText.isBlank()) {
-                JOptionPane.showMessageDialog(window, "Preencha o nome a vida!");
+                JOptionPane.showMessageDialog(window, "Fill in the name and the life!");
                 return;
             }
 
@@ -161,10 +158,5 @@ public class GUI {
                 statusLabel.setText("Monster removed: " + removed.getName());
             }
         });
-    }
-
-    // Test interface
-    public static void main(String[] args) {
-        new GUI();
     }
 }
