@@ -11,14 +11,15 @@ public class GUI {
     private JButton applyButton;
     private JLabel statusLabel;
     private JButton removeButton;
+    private JButton cleanListButton;
     private JTextField amountField;
     private DefaultListModel<Monster> monsterListModel;
     private JList<Monster> monsterListView;
 
     public GUI() {
-        configWindow();             // Define window size, title, close operation, etc
-        initComponents();           // Create and configure all buttons, fields, etc.
-        setupLayout();              // Define the layout of components
+        configWindow();
+        initComponents();
+        setupLayout();
         addListeners();
     }
 
@@ -27,6 +28,7 @@ public class GUI {
         window.setTitle("Monster Tracker RPG");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(420,420);
+        window.setLocationRelativeTo(null);
         window.setResizable(false);
     }
 
@@ -38,7 +40,12 @@ public class GUI {
         createButton = new JButton("Create monster");
         applyButton = new JButton("Apply");
         removeButton = new JButton("Remove");
+        cleanListButton = new JButton("\uD83D\uDDD1\uFE0F");
+
         statusLabel = new JLabel(" ");
+        statusLabel.setPreferredSize(new Dimension(380, 30));
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        statusLabel.setBorder(BorderFactory.createLineBorder(Color.gray));
 
         applyButton.setEnabled(false);
         removeButton.setEnabled(false);
@@ -81,6 +88,7 @@ public class GUI {
         controlPanel.add(amountField);
         controlPanel.add(applyButton);
         controlPanel.add(removeButton);
+        controlPanel.add(cleanListButton);
 
         // monster list
         JScrollPane listScrollPane = new JScrollPane(monsterListView);
@@ -157,6 +165,25 @@ public class GUI {
                 Monster removed = monsterListModel.remove(index);
                 statusLabel.setText("Monster removed: " + removed.getName());
             }
+        });
+
+        cleanListButton.addActionListener(e -> {
+            if (monsterListModel.isEmpty()){
+                statusLabel.setText("There are no monsters created.");
+            } else {
+                int confirm = JOptionPane.showConfirmDialog(window,
+                        "Do you want to remove all monsters?",
+                        "Confirmation",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    monsterListModel.clear();
+                    monsterListView.clearSelection();
+                    statusLabel.setText("All monsters have been removed.");
+                }
+            }
+
         });
     }
 }
