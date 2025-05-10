@@ -12,6 +12,7 @@ public class GUI {
     private JLabel statusLabel;
     private JButton removeButton;
     private JButton cleanListButton;
+    private JButton cloneButton;
     private JTextField amountField;
     private DefaultListModel<Monster> monsterListModel;
     private JList<Monster> monsterListView;
@@ -41,6 +42,7 @@ public class GUI {
         applyButton = new JButton("Apply");
         removeButton = new JButton("Remove");
         cleanListButton = new JButton("\uD83D\uDDD1\uFE0F");
+        cloneButton = new JButton("Clone");
 
         statusLabel = new JLabel(" ");
         statusLabel.setPreferredSize(new Dimension(380, 30));
@@ -49,6 +51,7 @@ public class GUI {
 
         applyButton.setEnabled(false);
         removeButton.setEnabled(false);
+        cloneButton.setEnabled(false);
 
         monsterListModel = new DefaultListModel<>();
         monsterListView = new JList<>(monsterListModel);
@@ -88,6 +91,7 @@ public class GUI {
         controlPanel.add(amountField);
         controlPanel.add(applyButton);
         controlPanel.add(removeButton);
+        controlPanel.add(cloneButton);
         controlPanel.add(cleanListButton);
 
         // monster list
@@ -142,6 +146,7 @@ public class GUI {
             boolean selected = monsterListView.getSelectedIndex() != -1;
             applyButton.setEnabled(selected);
             removeButton.setEnabled(selected);
+            cloneButton.setEnabled(selected);
         });
 
         applyButton.addActionListener(e -> {
@@ -183,7 +188,24 @@ public class GUI {
                     statusLabel.setText("All monsters have been removed.");
                 }
             }
+        });
 
+        cloneButton.addActionListener(e -> {
+            Monster selected = monsterListView.getSelectedValue();
+            if (selected == null) return; // nothing selected
+
+            Monster copiedMonster = selected.copy(); // clone the selected monster
+            String newName = JOptionPane.showInputDialog(window,
+                    "Enter new name for the cloned monster:",
+                    "Clone monster",
+                    JOptionPane.PLAIN_MESSAGE);
+            if (newName != null && !newName.trim().isEmpty()) {
+                copiedMonster.setName(newName); // set new name to the copied monster
+                monsterListModel.addElement(copiedMonster);
+                statusLabel.setText(selected.getName() + " cloned to " + newName);
+            } else {
+                statusLabel.setText("Clone canceled or invalid name.");
+            }
         });
     }
 }
