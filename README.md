@@ -11,7 +11,12 @@ I've been a big fan of RPGs for over four years now. The worlds and adventures y
 - Java (version 8 or higher) must be installed.
 - (Optional) An IDE like IntelliJ, Eclipse, or VS Code with Java support.
 
-### Run the application ▶️
+### 1. Clone this repository 💾
+```bash
+https://github.com/izaacpinheiro/monster-tracker-rpg.git
+```
+
+### 2. Run the application ▶️
 ```bash
 java app.MonsterTrackerApp
 ```
